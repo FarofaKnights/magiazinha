@@ -37,4 +37,10 @@ public class Atacavel : MonoBehaviour {
     public virtual void Morrer() {
         Destroy(gameObject);
     }
+
+    public void GerarTipoAleatorio() {
+        Tipo[] tipos = { Tipo.Vermelho, Tipo.Verde, Tipo.Azul };
+        int index = Random.Range(0, tipos.Length);
+        tipo = tipos[index];
+    }
 }

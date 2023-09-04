@@ -13,13 +13,23 @@ public class Inimigo : MonoBehaviour {
 
     GameObject alvo;
 
+    Atacavel atacavel;
+
+    public GameObject redEffect, blueEffect, greenEffect;
+
 
     NavMeshAgent agent;
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
-    }
+        atacavel = GetComponent<Atacavel>();
+        
+        if (atacavel.tipo == Tipo.Neutro) atacavel.GerarTipoAleatorio();
 
+        if (atacavel.tipo == Tipo.Vermelho) redEffect.SetActive(true);
+        else if (atacavel.tipo == Tipo.Azul) blueEffect.SetActive(true);
+        else if (atacavel.tipo == Tipo.Verde) greenEffect.SetActive(true);
+    }
 
     void FixedUpdate() {
         if (estado == Estado.Vagando) Vagar();
@@ -28,12 +38,15 @@ public class Inimigo : MonoBehaviour {
         else if (estado == Estado.Fugindo) Fugir();
         
         agent.velocity = velocidade;
-        // transform.LookAt(transform.position);
+        transform.LookAt(transform.position);
     }
 
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, raioProcura);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + transform.forward*0.5f, 0.5f);
     }
 
     void ProcurarAlvo() {
@@ -45,6 +58,16 @@ public class Inimigo : MonoBehaviour {
                 alvo = hitColliders[i].gameObject;
                 estado = Estado.Seguindo;
                 break;
+            }
+        }
+    }
+
+    void Atacar() {
+        // Procura por um alvo
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + transform.forward * 0.5f, 0.5f);
+
+        for (int i = 0; i < hitColliders.Length; i++) {
+            if (hitColliders[i].CompareTag("Player")) {
             }
         }
     }
