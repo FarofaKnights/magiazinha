@@ -5,6 +5,10 @@ using UnityEngine;
 public class RedProjetil : MonoBehaviour {
     public float velocidade = 10f;
 
+    void Start() {
+        Destroy(gameObject, 5f);
+    }
+
     void FixedUpdate() {
         transform.Translate(Vector3.forward * velocidade * Time.fixedDeltaTime);
     }

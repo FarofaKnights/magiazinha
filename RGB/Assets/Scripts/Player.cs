@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
     GameObject corpo;
 
     public float speed = 5f;
+    bool isDashing = false;
+    public float dashSpeed = 10f, dashTime = 0.2f;
 
     public Arma arma;
 
@@ -14,7 +16,7 @@ public class Player : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         corpo = transform.Find("Corpo").gameObject;
 
-        SelectArma("Cajado");
+        SelectArma("Espada");
     }
 
     void Update() {
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour {
         float y = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(x, 0, y);
-        controller.Move(move * Time.deltaTime * speed);
+        controller.SimpleMove(move * speed);
 
 
         // Rotacionar jogador
@@ -32,10 +34,36 @@ public class Player : MonoBehaviour {
             corpo.transform.LookAt(mousePosition);
         }
 
-        // Ataque
-        if (Input.GetMouseButtonDown(0)) {
-            arma.Atacar();
+        if (arma != null) {
+            // Ataque
+            if (Input.GetMouseButtonDown(0)) {
+                arma.Atacar();
+            } else if (Input.GetMouseButtonDown(1)) {
+                arma.AtacarEspecial();
+            }
         }
+
+        // Dash
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing) {
+            StartCoroutine(Dash());
+        }
+    }
+
+    IEnumerator Dash() {
+        isDashing = true;
+
+        float dashTimer = 0f;
+
+        Vector3 dashDirection = corpo.transform.forward;
+        dashDirection.y = 0;
+
+        while (dashTimer < dashTime) {
+            dashTimer += Time.deltaTime;
+            controller.Move(dashDirection * Time.deltaTime * dashSpeed);
+            yield return null;
+        }
+
+        isDashing = false;
     }
 
 
@@ -62,5 +90,12 @@ public class Player : MonoBehaviour {
         GameObject armaObj = corpo.transform.Find(nome).gameObject;
         armaObj.SetActive(true);
         arma = armaObj.GetComponent<Arma>();
+    }
+
+    public string GetArma() {
+        if (arma == null) return "";
+
+        MonoBehaviour script = (MonoBehaviour)arma;
+        return script.gameObject.name;
     }
 }

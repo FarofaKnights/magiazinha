@@ -35,6 +35,6 @@ public class Soco : MonoBehaviour, Arma {
     }
 
     public void AtacarEspecial() {
-        animator.SetTrigger("Soco");
+        animator.SetTrigger("Especial");
     }
 }

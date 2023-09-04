@@ -19,6 +19,8 @@ public class Cajado : MonoBehaviour, Arma {
     }
 
     public void AtacarEspecial() {
-        animator.SetTrigger("Magia");
+        animator.SetTrigger("Especial");
+
+        
     }
 }

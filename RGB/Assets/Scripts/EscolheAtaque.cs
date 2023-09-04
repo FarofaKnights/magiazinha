@@ -8,6 +8,7 @@ public class EscolheAtaque : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
             other.GetComponent<Player>().SelectArma(arma);
+            Destroy(gameObject);
         }
     }
 }

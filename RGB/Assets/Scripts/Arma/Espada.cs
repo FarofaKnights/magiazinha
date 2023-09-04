@@ -35,6 +35,6 @@ public class Espada : MonoBehaviour, Arma {
     }
 
     public void AtacarEspecial() {
-        animator.SetTrigger("Ataque");
+        animator.SetTrigger("Especial");
     }
 }
