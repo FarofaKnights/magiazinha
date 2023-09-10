@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Soco : MonoBehaviour, Arma {
+public class Soco : Arma {
     Animator animator;
-
-    public float dano = 10f;
-    public float area = 1f;
 
     public Transform danoArea;
 
@@ -14,10 +11,10 @@ public class Soco : MonoBehaviour, Arma {
         animator = GetComponent<Animator>();
     }
 
-    public void Atacar() {
+    public override void Atacar() {
         animator.SetTrigger("Soco");
 
-        Collider[] colliders = Physics.OverlapSphere(danoArea.position, area);
+        Collider[] colliders = Physics.OverlapSphere(danoArea.position, area, GameManager.instance.layerInimigo);
 
         foreach (Collider collider in colliders) {
             Atacavel atacavel = collider.GetComponent<Atacavel>();
@@ -34,7 +31,7 @@ public class Soco : MonoBehaviour, Arma {
         Gizmos.DrawWireSphere(danoArea.position, area);
     }
 
-    public void AtacarEspecial() {
+    public override void AtacarEspecial() {
         animator.SetTrigger("Especial");
     }
 }

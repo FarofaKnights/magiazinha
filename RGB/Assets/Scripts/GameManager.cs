@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour {
 
     public Player player;
 
+    public LayerMask layerInimigo;
+
+    public int power = 0;
+
     void Awake() {
         if (instance == null) instance = this;
         else Destroy(gameObject);
@@ -37,5 +41,10 @@ public class GameManager : MonoBehaviour {
             GameObject powerUp = Instantiate(greenPowerUpPrefab, greenSpawn.transform.position, Quaternion.identity);
             powerUp.transform.parent = greenSpawn.transform;
         }
+    }
+
+    public void AddPower(int amount = 1) {
+        power += amount;
+        UIController.instance.UpdatePowerText();
     }
 }

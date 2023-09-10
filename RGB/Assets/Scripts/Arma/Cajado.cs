@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cajado : MonoBehaviour, Arma {
+public class Cajado : Arma {
     Animator animator;
 
     public GameObject projetilPrefab;
@@ -12,13 +12,13 @@ public class Cajado : MonoBehaviour, Arma {
         animator = GetComponent<Animator>();
     }
 
-    public void Atacar() {
+    public override void Atacar() {
         animator.SetTrigger("Magia");
 
         GameObject projetil = Instantiate(projetilPrefab, spawnArea.position, spawnArea.rotation);
     }
 
-    public void AtacarEspecial() {
+    public override void AtacarEspecial() {
         animator.SetTrigger("Especial");
 
         

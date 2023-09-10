@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : Atacavel {
     CharacterController controller;
     GameObject corpo;
 
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
 
         float dashTimer = 0f;
 
-        Vector3 dashDirection = corpo.transform.forward;
+        Vector3 dashDirection = controller.velocity.normalized;
         dashDirection.y = 0;
 
         while (dashTimer < dashTime) {
@@ -97,5 +97,11 @@ public class Player : MonoBehaviour {
 
         MonoBehaviour script = (MonoBehaviour)arma;
         return script.gameObject.name;
+    }
+
+    public override void SofrerDano(float dano, Tipo tipoDano = Tipo.Neutro) {
+        base.SofrerDano(dano, tipoDano);
+
+        UIController.instance.UpdateLife(vida);
     }
 }

@@ -14452,7 +14452,7 @@ GameObject:
   - component: {fileID: 8566173720900136489}
   - component: {fileID: 8566173720900136534}
   - component: {fileID: 8566173720900136488}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: InimigoGenerico
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14507,6 +14507,7 @@ MonoBehaviour:
   vidaMaxima: 100
   tipo: 0
   sobrecarregado: 0
+  invulneravelTime: 0
 --- !u!114 &8566173720900136534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14519,14 +14520,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83b332d6c72f44bbaf33175ddd6ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  estado: 4
+  estado: 1
+  paradoTime: 0
+  raioProximidade: 0
   speed: 1
-  maxWanderTime: 4
-  maxParadoTime: 5
-  raioProcura: 2
+  waitAttackTime: 0
+  velocidade: {x: 0, y: 0, z: 0}
   redEffect: {fileID: 4649073469998431928}
   blueEffect: {fileID: 364013450}
   greenEffect: {fileID: 1124750622}
+  dropPrefab: {fileID: 3144327287382829507, guid: 695d867872db26b45aa0e718bfd23da6, type: 3}
+  quantidadeDrop: 1
+  ataque: {fileID: 0}
 --- !u!195 &8566173720900136488
 NavMeshAgent:
   m_ObjectHideFlags: 0

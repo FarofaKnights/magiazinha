@@ -8,8 +8,11 @@ public class Atacavel : MonoBehaviour {
     public float vida, vidaMaxima;
     public Tipo tipo = Tipo.Neutro;
     public bool sobrecarregado = false;
+    public float invulneravelTime = 0;
+    float lastAttack = 0;
+    public bool isDying = false;
 
-    float MultiplicadorDano(Tipo danoRecebido) {
+    protected float MultiplicadorDano(Tipo danoRecebido) {
         if (tipo == Tipo.Vermelho) {
             if (danoRecebido == Tipo.Azul) return 2;
             if (danoRecebido == Tipo.Verde) return 0.5f;
@@ -24,7 +27,10 @@ public class Atacavel : MonoBehaviour {
         return 1;
     }
 
-    public void SofrerDano(float dano, Tipo tipoDano = Tipo.Neutro) {
+    public virtual void SofrerDano(float dano, Tipo tipoDano = Tipo.Neutro) {
+        if (Time.time - lastAttack < invulneravelTime) return;
+        lastAttack = Time.time;
+
         float danoReal = dano * MultiplicadorDano(tipoDano);
 
         vida -= danoReal;
@@ -36,6 +42,7 @@ public class Atacavel : MonoBehaviour {
 
     public virtual void Morrer() {
         Destroy(gameObject);
+        isDying = true;
     }
 
     public void GerarTipoAleatorio() {

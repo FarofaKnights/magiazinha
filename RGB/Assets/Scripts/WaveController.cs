@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveController : MonoBehaviour {
+    public static WaveController instance;
+
     public int wave = 0;
     public WaveInfo[] waves;
 
@@ -10,16 +12,24 @@ public class WaveController : MonoBehaviour {
     public GameObject inimigosHolder;
 
     public bool isWaveWaving = false;
+    public bool waveAtStart = true;
+
+    public GameObject shopHolder;
+
+    void Awake() {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
 
     void Start() {
-        SpawnNewWave();
+        if (waveAtStart)
+            SpawnNewWave();
     }
 
     void FixedUpdate() { 
         if (isWaveWaving && inimigosHolder.transform.childCount == 0) {
             isWaveWaving = false;
-
-            Invoke("SpawnNewWave", 3);
+            shopHolder.SetActive(true);
         }
     }
 
@@ -29,6 +39,7 @@ public class WaveController : MonoBehaviour {
             wave = 0;
         }
         isWaveWaving = true;
+        shopHolder.SetActive(false);
 
         wave++;
         WaveInfo waveInfo = waves[wave-1];
