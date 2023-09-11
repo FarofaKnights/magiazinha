@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RedProjetil : MonoBehaviour {
     public float velocidade = 10f;
+    public LayerMask layerMask;
 
     void Start() {
         Destroy(gameObject, 5f);
@@ -11,15 +12,18 @@ public class RedProjetil : MonoBehaviour {
 
     void FixedUpdate() {
         transform.Translate(Vector3.forward * velocidade * Time.fixedDeltaTime);
-    }
 
-    void OnCollisionEnter(Collision collision) {
-        Atacavel atacavel = collision.gameObject.GetComponent<Atacavel>();
+        // Check for radius sphere collision
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.75f, layerMask);
 
-        if (atacavel != null) {
-            atacavel.SofrerDano(10f, Tipo.Vermelho);
+        foreach (Collider collider in colliders) {
+            Atacavel atacavel = collider.gameObject.GetComponent<Atacavel>();
+
+            if (atacavel != null) {
+                atacavel.SofrerDano(10f, Tipo.Vermelho);
+            }
+
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
     }
 }

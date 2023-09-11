@@ -19,10 +19,11 @@ public class UIController : MonoBehaviour {
 
     void Start() {
         shopPanel.SetActive(false);
+        UpdatePowerText();
     }
 
     public void UpdatePowerText() {
-        powerText.text = GameManager.instance.power.ToString();
+        powerText.text = GameManager.instance.power.ToString() + "/" + GameManager.instance.maxPower.ToString();
     }
 
     public void UpdateLife(float amount) {

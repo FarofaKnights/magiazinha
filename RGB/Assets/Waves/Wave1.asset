@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   inimigosPrefab:
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
+  - {fileID: 2763147805167825814, guid: 96003f850be36be4badeea689e7b95dc, type: 3}
+  - {fileID: 2763147805167825814, guid: 96003f850be36be4badeea689e7b95dc, type: 3}
+  - {fileID: 2763147805167825814, guid: 96003f850be36be4badeea689e7b95dc, type: 3}
+  - {fileID: 2763147805167825814, guid: 96003f850be36be4badeea689e7b95dc, type: 3}
+  - {fileID: 2763147805167825814, guid: 96003f850be36be4badeea689e7b95dc, type: 3}

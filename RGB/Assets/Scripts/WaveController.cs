@@ -14,8 +14,6 @@ public class WaveController : MonoBehaviour {
     public bool isWaveWaving = false;
     public bool waveAtStart = true;
 
-    public GameObject shopHolder;
-
     void Awake() {
         if (instance == null) instance = this;
         else Destroy(gameObject);
@@ -29,19 +27,29 @@ public class WaveController : MonoBehaviour {
     void FixedUpdate() { 
         if (isWaveWaving && inimigosHolder.transform.childCount == 0) {
             isWaveWaving = false;
-            shopHolder.SetActive(true);
+            MagnetPower();
+            SpawnNewWave();
+        }
+    }
+
+    public void MagnetPower() {
+        Power[] powers = FindObjectsOfType<Power>();
+
+        foreach (Power power in powers) {
+            power.target = GameManager.instance.player.transform.gameObject;
         }
     }
 
     public void SpawnNewWave() {
         if (isWaveWaving) return;
+
+        wave = Random.Range(1, waves.Length);
+
         if (wave >= waves.Length) {
             wave = 0;
         }
         isWaveWaving = true;
-        shopHolder.SetActive(false);
 
-        wave++;
         WaveInfo waveInfo = waves[wave-1];
         List<Transform> spawns = GetFreeSpawnArea();
 

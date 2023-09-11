@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: Wave5
   m_EditorClassIdentifier: 
   inimigosPrefab:
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
-  - {fileID: 8566173720900136533, guid: cf5d2f30cba2d904aaecb97c91b606c2, type: 3}
+  - {fileID: 5030070513471167757, guid: 8d5a2b78884ac304d89d216aaf690823, type: 3}
+  - {fileID: 5030070513471167757, guid: 8d5a2b78884ac304d89d216aaf690823, type: 3}
+  - {fileID: 5030070513471167757, guid: 8d5a2b78884ac304d89d216aaf690823, type: 3}
+  - {fileID: 5030070513471167757, guid: 8d5a2b78884ac304d89d216aaf690823, type: 3}
+  - {fileID: 5030070513471167757, guid: 8d5a2b78884ac304d89d216aaf690823, type: 3}

@@ -1,50 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    public GameObject bluePowerUpPrefab, redPowerUpPrefab, greenPowerUpPrefab;
-
     public static GameManager instance;
-
-    public GameObject redSpawn, blueSpawn, greenSpawn;
 
     public Player player;
 
     public LayerMask layerInimigo;
 
-    public int power = 0;
+    public int power = 0, maxPower = 30;
+
+    public string[] weapons = { "Espada", "Soco", "Cajado" };
+    int currentWeapon = 0;
+
+    public bool winning = false;
 
     void Awake() {
         if (instance == null) instance = this;
         else Destroy(gameObject);
     }
 
-    void Start() {
-        InvokeRepeating("CheckEmpty", 0, 0.2f);
-    }
-
-    void CheckEmpty() {
-        string playerWeapon = player.GetArma();
-
-        if (redSpawn.transform.childCount == 0 && playerWeapon != "Cajado") {
-            GameObject powerUp = Instantiate(redPowerUpPrefab, redSpawn.transform.position, Quaternion.identity);
-            powerUp.transform.parent = redSpawn.transform;
-        }
-
-        if (blueSpawn.transform.childCount == 0 && playerWeapon != "Espada") {
-            GameObject powerUp = Instantiate(bluePowerUpPrefab, blueSpawn.transform.position, Quaternion.identity);
-            powerUp.transform.parent = blueSpawn.transform;
-        }
-
-        if (greenSpawn.transform.childCount == 0 && playerWeapon != "Soco") {
-            GameObject powerUp = Instantiate(greenPowerUpPrefab, greenSpawn.transform.position, Quaternion.identity);
-            powerUp.transform.parent = greenSpawn.transform;
-        }
-    }
-
     public void AddPower(int amount = 1) {
         power += amount;
         UIController.instance.UpdatePowerText();
+
+        if (power >= maxPower) {
+            Win();
+        }
+    }
+
+    public void Win() {
+        winning = true;
+        SceneManager.LoadScene("Win");
+    }
+
+    public void Lose() {
+        SceneManager.LoadScene("Lose");
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            currentWeapon = (currentWeapon + 1) % weapons.Length;
+            player.SelectArma(weapons[currentWeapon]);
+        }
     }
 }

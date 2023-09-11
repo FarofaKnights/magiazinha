@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: d16bf035b2e21064bbf02822fabf7d96
+  - enabled: 1
+    path: Assets/Scenes/Torneio.unity
+    guid: 0ed175ee9bf26af41ba417e1c33a023a
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
+    guid: d9d0810bace0f9c48af7499376700ee6
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 226e0085932eeb74bb80bbd3d30f0b78
   m_configObjects: {}

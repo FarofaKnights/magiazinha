@@ -16,7 +16,7 @@ public class Player : Atacavel {
         controller = GetComponent<CharacterController>();
         corpo = transform.Find("Corpo").gameObject;
 
-        SelectArma("Espada");
+        SelectArma("Cajado");
     }
 
     void Update() {
@@ -103,5 +103,10 @@ public class Player : Atacavel {
         base.SofrerDano(dano, tipoDano);
 
         UIController.instance.UpdateLife(vida);
+    }
+
+    void OnDestroy() {
+        if (!GameManager.instance.winning)
+            GameManager.instance.Lose();
     }
 }
